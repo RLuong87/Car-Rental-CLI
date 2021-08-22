@@ -4,49 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    //    private int year;
+
     private String make;
     private String model;
+    public static List<Cars> carsList = new ArrayList<>();
 
-    public Cars(String make, String model) {
-//        this.year = year;
+    Cars(String make, String model) {
         this.make = make;
         this.model = model;
     }
 
     public static void carsAvail() {
-        List<Cars> rented = new ArrayList<>();
-
-        Cars honda = new Cars("Honda", "Accord");
-        rented.add(honda);
-
-        Cars toyota = new Cars("Toyota", "Camry");
-        rented.add(toyota);
-
-        Cars jeep = new Cars("Jeep", "Grand Cherokee");
-        rented.add(jeep);
-
-        Cars cadillac = new Cars("Cadillac", "Escalade");
-        rented.add(cadillac);
-
-        System.out.println(rented.get(0));
+//        carsList = new ArrayList<>();
+        carsList.add(new Cars("Honda", "Accord"));
+        carsList.add(new Cars("Toyota", "Camry"));
+        carsList.add(new Cars("Chevy", "Impala"));
+        carsList.add(new Cars("Acura", "TSX"));
     }
 
-//    public void setYear(int year) {
-//        this.year = year;
-//    }
-
-    public void setMake(String make) {
-        this.make = make;
+    public static void show(List<Cars> car) {
+        for (int i = 0; i < car.size(); i++) {
+            Cars auto = car.get(i);
+            // %d place holder for integer, %s place holder for string
+            System.out.printf("%d. %s %s\n", i + 1, auto.getMake(), auto.getModel());
+        }
+        System.out.printf("%d. Exit\n", car.size() + 1);
     }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-//    public int getYear() {
-//        return year;
-//    }
 
     public String getMake() {
         return make;
@@ -58,7 +41,6 @@ public class Cars {
 
     @Override
     public String toString() {
-
         return make + " " + model;
     }
 }
