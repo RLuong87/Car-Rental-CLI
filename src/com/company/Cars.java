@@ -9,6 +9,7 @@ public class Cars {
     private String make;
     private String model;
     private static boolean exit = false;
+//    public static List<Cars> carMenu = new ArrayList<>();
 
     Cars(String make, String model) {
         this.make = make;
@@ -16,10 +17,10 @@ public class Cars {
     }
 
     public static void showMenu(List<Cars> cars) {
+        // Loop through the array list
         System.out.println();
         System.out.println("Available Cars");
-        System.out.println("-----------------------------------");
-        // Loop through the array list
+        System.out.println("---------------------------------------------------");
         for (int i = 0; i < cars.size(); i++) {
             Cars auto = cars.get(i);
             // %d place holder for integer, %s place holder for string
@@ -33,6 +34,15 @@ public class Cars {
         System.out.print("Selection: ");
     }
 
+//    public static void carLot() {
+////        List<Cars> carMenu = new ArrayList<>();
+//        carMenu.add(new Cars("Honda", "Accord"));
+//        carMenu.add(new Cars("Toyota", "Camry"));
+//        carMenu.add(new Cars("Chevy", "Impala"));
+//        carMenu.add(new Cars("Acura", "TSX"));
+//        carMenu.add(new Cars("Dodge", "Durango"));
+//    }
+
     public static void setOption() {
         List<Cars> carMenu = new ArrayList<>();
         carMenu.add(new Cars("Honda", "Accord"));
@@ -40,41 +50,41 @@ public class Cars {
         carMenu.add(new Cars("Chevy", "Impala"));
         carMenu.add(new Cars("Acura", "TSX"));
         carMenu.add(new Cars("Dodge", "Durango"));
+//        carLot();
         int choice = 0;
 
         while (!exit) {
             showMenu(carMenu);
             try {
                 choice = CLI.scanner.nextInt();
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid selection, please try again.");
-            } catch (InputMismatchException ex) {
-                System.out.println("Invalid selection, please try again.");
-            }
+//            } catch (IndexOutOfBoundsException e) {
 
-            switch (choice) {
-                case 1:
-                    System.out.println("You've selected the " + carMenu.get(0));
-                    carMenu.remove(0);
-                    break;
-                case 2:
-                    System.out.println("You've selected the " + carMenu.get(1));
-                    carMenu.remove(1);
-                    break;
-                case 3:
-                    System.out.println("You've selected the " + carMenu.get(2));
-                    carMenu.remove(2);
-                    break;
-                case 4:
-                    System.out.println("You've selected the " + carMenu.get(3));
-                    carMenu.remove(3);
-                case 5:
-                    System.out.println("You've selected the " + carMenu.get(4));
-                    carMenu.remove(4);
-                    break;
-                default:
-                    System.out.println("Invalid selection, please try again.");
-                    break;
+                switch (choice) {
+                    case 1:
+                        System.out.println("You've selected the " + carMenu.get(0));
+                        carMenu.remove(0);
+                        break;
+                    case 2:
+                        System.out.println("You've selected the " + carMenu.get(1));
+                        carMenu.remove(1);
+                        break;
+                    case 3:
+                        System.out.println("You've selected the " + carMenu.get(2));
+                        carMenu.remove(2);
+                        break;
+                    case 4:
+                        System.out.println("You've selected the " + carMenu.get(3));
+                        carMenu.remove(3);
+                    case 5:
+                        System.out.println("You've selected the " + carMenu.get(4));
+                        carMenu.remove(4);
+                        break;
+                    default:
+                        System.out.println("Invalid selection, please try again.");
+                        break;
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("Invalid selection, please try again.");
             }
             if (choice == 0) {
                 setOption();

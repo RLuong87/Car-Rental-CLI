@@ -9,9 +9,14 @@ public class CarRentalService {
         System.out.println("===============================");
         System.out.println("Welcome to Richie's Car Rental");
         System.out.println("===============================");
+        display();
+    }
+
+    public static void display() {
         Cars.setOption();
     }
 }
+
 
 //    Conversion characters are only valid for certain data types. Here are some common ones:
 //    s formats strings.

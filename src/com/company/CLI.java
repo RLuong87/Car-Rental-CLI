@@ -11,12 +11,10 @@ public class CLI {
 
         while (true) {
             try {
-                choice = CLI.scanner.nextInt();
-//                CarRentalService.options();
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid selection, please try again.");
             } catch (InputMismatchException ex) {
-//                System.out.println("Invalid selection, please try again.");
+                System.out.println("Invalid selection, please try again.");
             }
         }
     }
