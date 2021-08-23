@@ -20,7 +20,7 @@ public class Main {
     Enter a number to select the car you'd like to rent
     Selection:
 
-    If  the selection number is not one of the listed numbers (or not a number) the output should be
+    If the selection number is not one of the listed numbers (or not a number) the output should be
     "Car selection invalid, please try again" AND the prompt should re-appearOnce the car selection is accepted,
     the selected car should be designate in the program as being currently rentedThe program should start the cycle again
     where the list of available cars is shown (the selected car should not appear now)
