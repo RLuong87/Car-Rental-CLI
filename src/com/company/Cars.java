@@ -8,7 +8,7 @@ public class Cars {
     private String make;
     private String model;
     public static List<Cars> carMenu = new ArrayList<>();
-    private static boolean exit = false;
+    public static boolean exit = false;
     public static int choice = 0;
     public static char opt = '0';
 
@@ -117,10 +117,6 @@ public class Cars {
                 System.out.println("Invalid selection, please try again.");
             }
         }
-    }
-
-    public static boolean isExit() {
-        return exit;
     }
 
     public String getMake() {
