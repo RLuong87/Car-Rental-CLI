@@ -3,15 +3,16 @@ package com.company;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Cars {
     private String make;
     private String model;
+    public static List<Cars> carMenu = new ArrayList<>();
     private static boolean exit = false;
-//    public static List<Cars> carMenu = new ArrayList<>();
+    public static int choice = 0;
+    public static char opt = '0';
 
-    Cars(String make, String model) {
+    public Cars(String make, String model) {
         this.make = make;
         this.model = model;
     }
@@ -24,7 +25,7 @@ public class Cars {
         for (int i = 0; i < cars.size(); i++) {
             Cars auto = cars.get(i);
             // %d place holder for integer, %s place holder for string
-            System.out.printf("%d. %s %s\n", i + 1, auto.getMake(), auto.getModel());
+            System.out.printf("%d) %s %s\n", i + 1, auto.getMake(), auto.getModel());
         }
         System.out.println("---------------------------------------------------");
         System.out.println("Enter a number to select the car you'd like to rent");
@@ -35,7 +36,7 @@ public class Cars {
     }
 
 //    public static void carLot() {
-////        List<Cars> carMenu = new ArrayList<>();
+//        List<Cars> carMenu = new ArrayList<>();
 //        carMenu.add(new Cars("Honda", "Accord"));
 //        carMenu.add(new Cars("Toyota", "Camry"));
 //        carMenu.add(new Cars("Chevy", "Impala"));
@@ -43,25 +44,39 @@ public class Cars {
 //        carMenu.add(new Cars("Dodge", "Durango"));
 //    }
 
-    public static void setOption() {
-        List<Cars> carMenu = new ArrayList<>();
+    public static void carLot() {
         carMenu.add(new Cars("Honda", "Accord"));
         carMenu.add(new Cars("Toyota", "Camry"));
         carMenu.add(new Cars("Chevy", "Impala"));
         carMenu.add(new Cars("Acura", "TSX"));
-        carMenu.add(new Cars("Dodge", "Durango"));
-//        carLot();
-        int choice = 0;
+        carMenu.add(new Cars("Nissan", "Skyline"));
+    }
+
+    public static void transaction(int choice, List<Cars> cars) {
+        Cars item = cars.get(choice - 1);
+        System.out.println();
+        System.out.printf("You've selected the %s %s to rent ", item.getMake(), item.getModel());
+        System.out.println();
+    }
+
+    public static void setOption() {
+        carLot();
 
         while (!exit) {
-            showMenu(carMenu);
             try {
+                showMenu(carMenu);
                 choice = CLI.scanner.nextInt();
-//            } catch (IndexOutOfBoundsException e) {
+//            transaction(choice, carMenu);
 
                 switch (choice) {
                     case 1:
+//                        System.out.println("You've selected the " + carMenu.get(0));
+                        System.out.println();
                         System.out.println("You've selected the " + carMenu.get(0));
+//                        System.out.println("Are you sure you want to rent the " + carMenu.get(0));
+//                        System.out.println("Confirm (Y/N)");
+//                        opt = CLI.scanner.next();
+                        if (opt == 'Y') System.out.println("Please enter a name for this order");
                         carMenu.remove(0);
                         break;
                     case 2:
@@ -75,25 +90,31 @@ public class Cars {
                     case 4:
                         System.out.println("You've selected the " + carMenu.get(3));
                         carMenu.remove(3);
+                        break;
                     case 5:
                         System.out.println("You've selected the " + carMenu.get(4));
                         carMenu.remove(4);
+                        break;
+                    case 0:
+                        if (choice == 0) carMenu.clear();
+                        setOption();
+                        break;
+                    case 99:
+                        System.out.println("*****************");
+                        System.out.println("Have a great day!");
+                        System.out.println("*****************");
+                        exit = true;
+                        CLI.scanner.close();
                         break;
                     default:
                         System.out.println("Invalid selection, please try again.");
                         break;
                 }
-            } catch (IndexOutOfBoundsException ex) {
+            } catch (InputMismatchException ex) {
+                CLI.scanner.nextLine();
                 System.out.println("Invalid selection, please try again.");
-            }
-            if (choice == 0) {
-                setOption();
-            } else if (choice == 99) {
-                System.out.println("*****************");
-                System.out.println("Have a great day!");
-                System.out.println("*****************");
-                exit = true;
-                CLI.scanner.close();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid selection, please try again.");
             }
         }
     }
