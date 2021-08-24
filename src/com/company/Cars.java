@@ -10,7 +10,8 @@ public class Cars {
     public static List<Cars> carMenu = new ArrayList<>();
     public static boolean exit = false;
     public static int choice = 0;
-    public static char opt = '0';
+    public static char opt;
+    public static String customerName;
 
     public Cars(String make, String model) {
         this.make = make;
@@ -29,27 +30,21 @@ public class Cars {
         }
         System.out.println("---------------------------------------------------");
         System.out.println("Enter a number to select the car you'd like to rent");
-        System.out.println("Enter '0' to start over");
-        System.out.println("Enter '99' to quit");
+        System.out.println("To start over enter '0' or to EXIT enter '99'");
         System.out.println("---------------------------------------------------");
+        if (cars.isEmpty()) {
+            System.out.print("There are no more available cars.\nWould you like to start over or EXIT the program? ");
+        } else
         System.out.print("Selection: ");
     }
 
-//    public static void carLot() {
-//        List<Cars> carMenu = new ArrayList<>();
-//        carMenu.add(new Cars("Honda", "Accord"));
-//        carMenu.add(new Cars("Toyota", "Camry"));
-//        carMenu.add(new Cars("Chevy", "Impala"));
-//        carMenu.add(new Cars("Acura", "TSX"));
-//        carMenu.add(new Cars("Dodge", "Durango"));
-//    }
-
     public static void carLot() {
-        carMenu.add(new Cars("Honda", "Accord"));
-        carMenu.add(new Cars("Toyota", "Camry"));
-        carMenu.add(new Cars("Chevy", "Impala"));
-        carMenu.add(new Cars("Acura", "TSX"));
-        carMenu.add(new Cars("Nissan", "Skyline"));
+        carMenu.add(new Cars("Honda", "Civic Type R"));
+        carMenu.add(new Cars("Toyota", "Supra"));
+        carMenu.add(new Cars("Subaru", "WRX"));
+        carMenu.add(new Cars("Acura", "NSX"));
+        carMenu.add(new Cars("Nissan", "Skyline GTR"));
+        carMenu.add(new Cars("Mitsubishi", "Eclipse"));
     }
 
     public static void transaction(int choice, List<Cars> cars) {
@@ -73,27 +68,44 @@ public class Cars {
 //                        System.out.println("You've selected the " + carMenu.get(0));
                         System.out.println();
                         System.out.println("You've selected the " + carMenu.get(0));
-//                        System.out.println("Are you sure you want to rent the " + carMenu.get(0));
-//                        System.out.println("Confirm (Y/N)");
-//                        opt = CLI.scanner.next();
-                        if (opt == 'Y') System.out.println("Please enter a name for this order");
-                        carMenu.remove(0);
+                        System.out.println("Are you sure you want to rent the " + carMenu.get(0));
+                        System.out.print("Confirm (Y/N): ");
+                        opt = CLI.scanner.next().toUpperCase().charAt(0);
+                        if (opt == 'Y') {
+                            System.out.print("What is the name you would like to use to return your rental?\nEnter Name: ");
+                            customerName = CLI.scanner.next();
+                            CLI.scanner.next();
+                            CLI.scanner.nextLine();
+                            System.out.print("You entered " + customerName + "\nIf this is correct enter 'Y', if this is incorrect enter 'N' to try again: ");
+                            CLI.scanner.nextLine();
+                        } else
+                            carMenu.clear();
+                            setOption();
                         break;
                     case 2:
+                        System.out.println();
                         System.out.println("You've selected the " + carMenu.get(1));
                         carMenu.remove(1);
                         break;
                     case 3:
+                        System.out.println();
                         System.out.println("You've selected the " + carMenu.get(2));
                         carMenu.remove(2);
                         break;
                     case 4:
+                        System.out.println();
                         System.out.println("You've selected the " + carMenu.get(3));
                         carMenu.remove(3);
                         break;
                     case 5:
+                        System.out.println();
                         System.out.println("You've selected the " + carMenu.get(4));
                         carMenu.remove(4);
+                        break;
+                    case 6:
+                        System.out.println();
+                        System.out.println("You've selected the " + carMenu.get(5));
+                        carMenu.remove(5);
                         break;
                     case 0:
                         if (choice == 0) carMenu.clear();
