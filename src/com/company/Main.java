@@ -140,6 +140,9 @@ when is empty...start the menu.
 */
 
     public static void main(String[] args) {
-        CarRentalService.start();
+//        Menu.start();
+
+        Cars.inventory();
+        Cars.showInventory();
     }
 }
